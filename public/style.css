@@ -20,7 +20,7 @@ body{
     display: grid;
     grid-template-rows: 80px 92vh;
     grid-template-columns: 1fr 4fr;
-    
+
 
 }
 main{
@@ -54,7 +54,7 @@ h4{
 }
 #botaoAddTop:hover{
     background-color: rgb(59, 59, 59);
-    
+
 
 }
 .topicos{
@@ -74,7 +74,7 @@ input{
 }
 #confirmarInput:hover{
     background-color: rgb(59, 59, 59);
-    
+
 
 
 }

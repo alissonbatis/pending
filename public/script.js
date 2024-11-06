@@ -1,5 +1,8 @@
 const botaoAddTop = document.getElementById('botaoAddTop');
 const topicos = document.getElementById('topicos');
+let topicoSelecionado = 0;
+
+
 
 let listaDeTopicos = [];
 
@@ -40,13 +43,59 @@ function enviarTopico(inputTopico, divDoInput){
     const nomeDoTopico = inputTopico.value
 
         topicos.innerHTML = ``
-        listaDeTopicos.push({nome: nomeDoTopico, tasks: []})
+        listaDeTopicos.push({nome: nomeDoTopico, tasks: ['']})
         listaDeTopicos.forEach(topico => {
-            topicos.innerHTML += `<a href="/topico/:${topico.nome}">${topico.nome}</a> <br>`;
+            topicos.innerHTML += `<div class="topicoClick" data-name = "${topico.nome}">${topico.nome}</div> <br>`;
         });
+
+        //pega todos as divs que tem a classe topicoClick 
+        const divTopico = document.querySelectorAll(".topicoClick");
+
+        //adiciona um listener em todos eles  
+        divTopico.forEach(topico => {
+            topico.addEventListener('click',abrirTopico);
+            
+        });
+
         console.log(listaDeTopicos);
         divDoInput.remove();
 
 };
+
+
+function abrirTopico(){
+    const displayTasks = document.querySelector('main');
+    const nomeDoTopico = this.getAttribute("data-name"); // Pega o nome do atributo data-nome
+    const divTopico = document.querySelectorAll(".topicoClick");
+
+
+    divTopico.forEach(div => div.style.backgroundColor = '');
+    this.style.backgroundColor = '#636364';
+
+
+    displayTasks.innerHTML = '';
+
+
+    displayTasks.innerHTML = `<h1>${nomeDoTopico}</h1>`
+
+    listaDeTopicos.forEach((topico, index) => {
+        if(topico.nome == nomeDoTopico){
+            //mudar valor do topico selecionado
+            topicoSelecionado = index;
+
+            topico.tasks.forEach(tasks => {
+                displayTasks.innerHTML += `<div>${tasks}</div>`
+                
+            });
+        }
+        
+        
+    });
+    
+
+}
+
+
+
 
 
