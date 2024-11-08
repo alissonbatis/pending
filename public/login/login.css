@@ -3,7 +3,7 @@
     padding: 0px;
 }
 body{
-    background-color: #527c70;
+    background-color: #000000;
     position: relative;
     height: 100vh;
     
@@ -21,11 +21,6 @@ main{
     justify-content: center;
     align-items: center ;
     gap: 70px;
-}
-.logo img{
-    width: 100px;
-    margin-bottom: 150px;
-
 }
 form{
     width: 250px;
@@ -63,15 +58,11 @@ footer a:hover {
     right: 0px;
     color: rgb(175, 175, 175);
 }
-.prompt-regular {
-    font-family: "Prompt", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
   
   .prompt-extrabold {
     font-family: "Prompt", sans-serif;
     font-weight: 800;
-    font-size: 50px;
+    font-size: 30px;
     font-style: normal;
+    margin-left: 70px;
   }

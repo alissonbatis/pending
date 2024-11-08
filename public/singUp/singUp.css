@@ -1,3 +1,10 @@
 main{
-    height: 600px;
+    height: 550px;
 }
+.prompt-extrabold {
+    font-family: "Prompt", sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    font-style: normal;
+    margin-left: 52px;
+  }
