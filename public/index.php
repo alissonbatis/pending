@@ -1,3 +1,20 @@
+<?php 
+    session_start();
+    //print_r($_SESSION);
+
+    if((!isset($_SESSION['email']) == true ) and (!isset($_SESSION['senha']) == true)){
+            unset($_SESSION['email']);
+            unset($_SESSION['senha']);
+            header('Location: login/login.php');
+            
+    }
+    $logado = $_SESSION['email'];
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,7 +27,7 @@
 </head>
 <body>
     <header>
-        <img src="/public/img/LogoLonga.png" alt="logo">
+        <img src="img/LogoLonga.png" alt="Logo">
     </header>
 
     <aside>

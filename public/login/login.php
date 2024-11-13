@@ -18,28 +18,34 @@
           <h2 class="prompt-extrabold">Login</h2>
         </section>
         <section>
-          <img src="/public/img/LogoPretaSemFundo.png" alt="logo">
+          <img src="/pendingPHP/public/img/LogoPretaSemFundo.png" alt="logo">
         </section>
         
       </div>
 
-      <form>
+      <form action= "/pendingPHP/public/testeLogin.php" method ="POST">
+
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Nome de Usuário</label>
-          <input type="text" class="form-control" id="inputDoNomeUsuario">
+          <label for="exampleInputEmail1" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail" name = "email" required>
         </div>
+
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Senha</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+          <input type="password" class="form-control" id="exampleInputPassword1" name ="senha" required>
         </div>
+
         <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
           <label class="form-check-label" for="exampleCheck1">Aceito os Termos de Serviço</label>
         </div>
-        <button type="submit" class="btn btn-primary">Entrar</button>
+
+
+        <input type="submit" class="btn btn-primary" name = "submit" ></input>
+
         <div>
-          <a href= "/public/changePassword/changePass.html">Esqueceu a senha?</a>
-          <a href= "/public/singUp/singUp.html">Nao tem uma conta? Criar conta</a>
+          <a href= "/pendingPHP/public/changePassword/changePass.html">Esqueceu a senha?</a>
+          <a href= "/pendingPHP/public/singUp/singUp.php">Não tem uma conta? Criar conta</a>
         </div>
         
       </form>
