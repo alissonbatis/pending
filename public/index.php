@@ -1,17 +1,32 @@
 <?php 
     session_start();
-    //print_r($_SESSION);
 
     if((!isset($_SESSION['email']) == true ) and (!isset($_SESSION['senha']) == true)){
             unset($_SESSION['email']);
             unset($_SESSION['senha']);
             header('Location: login/login.php');
-            
     }
+    include 'config.php';
     $logado = $_SESSION['email'];
 
+    $resultUsuario = mysqli_query($conexao, "SELECT usuario_id FROM usuarios WHERE email = '$logado'");
+    $usuario = mysqli_fetch_assoc($resultUsuario);
+    $usuarioId = $usuario['usuario_id'];
+    echo "<script>console.log('usuarioId:{$usuarioId}');</script>";
 
+    // Recuperar os tópicos do usuário logado
+    $resultTopicos = mysqli_query($conexao, "SELECT * FROM topicos WHERE usuario_id = '$usuarioId'");
+
+    // Verificar se há tópicos
+    $topicos = [];
+    if(mysqli_num_rows($resultTopicos) > 0) {
+        while($topico = mysqli_fetch_assoc($resultTopicos)) {
+            $topicos[] = $topico;
+        }
+        
+    }
 ?>
+
 
 
 
@@ -33,11 +48,21 @@
     <aside>
         <h4>Tópicos</h4>
 
-        <button id="botaoAddTop"
+        <button class = "botaoAddTop" id="botaoAddTop">
             <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
         </button>
 
         <section class="topicos" id="topicos">
+            <?php
+                // Exibir os tópicos
+                if(count($topicos) > 0) {
+                    foreach($topicos as $topico) {
+                        echo "<li style = list-style:''><a href='topico.php?id={$topico['id']}&topico={$topico['topicoNome']}'>{$topico['topicoNome']}</a></li>";
+                    }
+                } else {
+                    echo "<p>Nenhum tópico encontrado.</p>";
+                }
+            ?>
         </section>
     </aside>
 

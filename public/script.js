@@ -1,101 +1,100 @@
 const botaoAddTop = document.getElementById('botaoAddTop');
 const topicos = document.getElementById('topicos');
-let topicoSelecionado = 0;
+const tasks = document.getElementById('sectionTasks');
+const botaoAddTask = document.getElementById('botaoAddTask');
+const botaoCheckBox= document.getElementById('checkbox');
+const botaoText= document.getElementById('text');
+const menuTask= document.getElementById('menuTask');
 
 
 
-let listaDeTopicos = [];
 
+function removerForm(idForm, idInput){
+    const novoInput = document.getElementById(idInput);
+        novoInput.focus();
+        const form = document.getElementById(idForm);
 
-
-
-botaoAddTop.addEventListener('click', ()=>{
-
-    
-
-    topicos.innerHTML += `<div id = "divDoInput">
-                <input type="text" id = "inputTopico">
-                <button id="confirmarInput">
-                    <i class="fa-solid fa-check" style="color: #ffffff;"></i>
-                </button>
-            </div>`;
-    
-    const confirmarInput = document.getElementById('confirmarInput');
-    const inputTopico = document.getElementById('inputTopico');
-    const divDoInput = document.getElementById('divDoInput');
-    
-    
-    confirmarInput.addEventListener('click', () => {enviarTopico(inputTopico, divDoInput)});
-
-    inputTopico.addEventListener('keydown', (event)=>{
-        if(event.key == "Enter"){
-            enviarTopico(inputTopico, divDoInput);
-        }
-    })
-
-
-
-});
-    
-
-
-function enviarTopico(inputTopico, divDoInput){
-    const nomeDoTopico = inputTopico.value
-
-        topicos.innerHTML = ``
-        listaDeTopicos.push({nome: nomeDoTopico, tasks: ['']})
-        listaDeTopicos.forEach(topico => {
-            topicos.innerHTML += `<div class="topicoClick" data-name = "${topico.nome}">${topico.nome}</div> <br>`;
+        novoInput.addEventListener('blur', () => {
+            form.remove();  // Remove o input
         });
-
-        //pega todos as divs que tem a classe topicoClick 
-        const divTopico = document.querySelectorAll(".topicoClick");
-
-        //adiciona um listener em todos eles  
-        divTopico.forEach(topico => {
-            topico.addEventListener('click',abrirTopico);
-            
-        });
-
-        console.log(listaDeTopicos);
-        divDoInput.remove();
-
-};
-
-
-function abrirTopico(){
-    const displayTasks = document.querySelector('main');
-    const nomeDoTopico = this.getAttribute("data-name"); // Pega o nome do atributo data-nome
-    const divTopico = document.querySelectorAll(".topicoClick");
-
-
-    divTopico.forEach(div => div.style.backgroundColor = '');
-    this.style.backgroundColor = '#636364';
-
-
-    displayTasks.innerHTML = '';
-
-
-    displayTasks.innerHTML = `<h1>${nomeDoTopico}</h1>`
-
-    listaDeTopicos.forEach((topico, index) => {
-        if(topico.nome == nomeDoTopico){
-            //mudar valor do topico selecionado
-            topicoSelecionado = index;
-
-            topico.tasks.forEach(tasks => {
-                displayTasks.innerHTML += `<div>${tasks}</div>`
-                
-            });
-        }
-        
-        
-    });
-    
-
 }
 
 
 
 
+botaoAddTop.addEventListener('click', () => {
+    // Adiciona o formulário para criar o tópico
+    topicos.innerHTML += `
+        <form id="formTopico" method="POST" action = "processaTopico.php">
 
+            <input type="text" id="inputTopico" name="topicoNome" required>
+
+            <button id="confirmarInput" type="submit">
+                <i class="fa-solid fa-check" style="color: #ffffff;"></i>
+            </button>
+        </form>`;
+
+    removerForm('formTopico','inputTopico');
+
+        
+});
+
+botaoAddTask.addEventListener('click', () => {
+    if (menuTask.classList.contains('hidden')){
+        menuTask.classList.remove('hidden');
+    }else{
+        menuTask.classList.add('hidden');
+    }
+
+    
+});
+
+botaoCheckBox.addEventListener('click', ()=>{
+    // Pega o topicoId da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const topicoId = urlParams.get('topicoId');  // Obtém o topicoId da URL
+    const topico = urlParams.get('topico');
+    
+    // Adiciona o formulário para criar uma nova task, incluindo topicoId como um campo oculto
+    tasks.innerHTML += `
+        <form method="POST" action="processaTask.php" id = "formTasks">
+
+            <input type="hidden" name="topicoId" value="${topicoId}"> 
+            <input type="hidden" name="topico" value="${topico}">
+            <input type="hidden" name="tipo" value="checkbox">
+            
+
+            <input type="text" id="inputTask" name="taskNome" required>
+            <button id="confirmarInput" type="submit">
+                <i class="fa-solid fa-check" style="color: #ffffff;"></i>
+            </button>
+        </form>
+    `;
+
+
+    removerForm('formTasks','inputTask');
+})
+
+botaoText.addEventListener('click', ()=>{
+    const urlParams = new URLSearchParams(window.location.search);
+    const topicoId = urlParams.get('topicoId');  // Obtém o topicoId da URL
+    const topico = urlParams.get('topico');
+    
+    // Adiciona o formulário para criar uma nova task, incluindo topicoId como um campo oculto
+    tasks.innerHTML += `
+        <form method="POST" action="processaTask.php" id = "formTasks">
+
+            <input type="hidden" name="topicoId" value="${topicoId}"> 
+            <input type="hidden" name="topico" value="${topico}">
+            <input type="hidden" name="tipo" value="text">
+            
+            <textarea name="taskNome" id="inputTask" placeholder = "Digite seu texto aqui..." required></textarea>
+            <button id="confirmarInput" type="submit">
+                <i class="fa-solid fa-check" style="color: #ffffff;"></i>
+            </button>
+        </form>
+    `;
+    removerForm('formTasks','inputTask');
+
+
+});

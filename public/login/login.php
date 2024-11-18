@@ -23,7 +23,7 @@
         
       </div>
 
-      <form action= "/pendingPHP/public/testeLogin.php" method ="POST">
+      <form action= "/pending/public/testeLogin.php" method ="POST">
 
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email</label>
