@@ -57,11 +57,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($topicoNome); ?></title>
+    <link rel="shortcut icon" href="img/LogoBrancaSemFundo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <div class = "menuTask hidden" id = "menuTask"> 
+        <button id = "excluirTask">Excluir</button><br>
+    </div>
     <header>
         <img src="img/LogoLonga.png" alt="Logo">
     </header>
@@ -94,13 +98,10 @@
         </button>
 
 
-        <div class ="menuTask hidden" id = "menuTask">
+        <div class ="menuAddTask hidden" id = "menuAddTask">
             <button id = "checkbox">Checkbox</button>
             <button id = "text">Text</button>
         </div>
-
-
-
 
 
 
@@ -110,12 +111,12 @@
                 if(count($tasks) > 0) {
                     foreach($tasks as $task) {
                         if($task['tipo'] == 'checkbox'){
-                            echo "<div class = 'task'>
-                                <input type = 'checkbox'>{$task['taskNome']}
+                            echo "<div class = 'task' data-task-id = '{$task['id']}'>
+                                <input type = 'checkbox'   data-teste = 'carai'>{$task['taskNome']}
                             </div> ";
                             
                         }else{
-                            echo "<p class = 'task'>{$task['taskNome']}</p> ";
+                            echo "<p class = 'task' data-task-id = '{$task['id']}'>{$task['taskNome']}</p> ";
                         }
                         
                     }
