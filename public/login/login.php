@@ -44,8 +44,8 @@
         <input type="submit" class="btn btn-primary" name = "submit" ></input>
 
         <div>
-          <a href= "/pendingPHP/public/changePassword/changePass.html">Esqueceu a senha?</a>
-          <a href= "/pendingPHP/public/singUp/singUp.php">Não tem uma conta? Criar conta</a>
+          <a href= "/pending/public/changePassword/changePass.html">Esqueceu a senha?</a>
+          <a href= "/pending/public/singUp/singUp.php">Não tem uma conta? Criar conta</a>
         </div>
         
       </form>
