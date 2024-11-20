@@ -41,6 +41,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class = "menuTask hidden" id = "menuTask"> 
+        <button id = "excluirTask">Excluir</button><br>
+    </div>
     <header>
         <img src="img/LogoLonga.png" alt="Logo">
     </header>
@@ -57,7 +60,7 @@
                 // Exibir os tópicos
                 if(count($topicos) > 0) {
                     foreach($topicos as $topico) {
-                        echo "<li style = list-style:''><a href='topico.php?id={$topico['id']}&topico={$topico['topicoNome']}'>{$topico['topicoNome']}</a></li>";
+                        echo "<li style = list-style:''><a href='topico.php?topicoId={$topico['id']}&topico={$topico['topicoNome']}&topicoUser={$topico['usuario_id']}' class = 'topico' data-topico-id = '{$topico['id']}'>{$topico['topicoNome']}</a></li>";
                     }
                 } else {
                     echo "<p>Nenhum tópico encontrado.</p>";
@@ -67,7 +70,8 @@
     </aside>
 
     <main>
-        <h3>Tasks pendentes</h3>
+        <h3>Bem-vindo ao Pending!</h3>
+        <p>Adicione um topico para começar</p>
     </main>
 
 
@@ -75,7 +79,7 @@
 
 
 
-    <script src="script.js"></script>
+    <script src="scriptIndex.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
 </body>
 </html>

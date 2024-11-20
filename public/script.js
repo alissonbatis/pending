@@ -10,49 +10,88 @@ const menuAddTask = document.getElementById("menuAddTask");
 
 
 
-
+//logica para remoçao de task e topico
 document.addEventListener('DOMContentLoaded', function() {
+    //TASK
     const tasksListadas = Array.from(document.getElementsByClassName("task"));
 
     console.log(tasksListadas); 
 
 
-
     tasksListadas.forEach((task) => {
 
-    task.addEventListener("contextmenu", function (event) {
-        event.preventDefault();
+      task.addEventListener("contextmenu", function (event) {
+          event.preventDefault();
 
 
-        const idDaTask = task.getAttribute('data-task-id');
+          const idDaTask = task.getAttribute('data-task-id');
 
 
-        console.log(idDaTask);
+          console.log(idDaTask);
 
-        //add clique no botao de excluir
-        const botaoExcluirTask = document.getElementById('excluirTask');
-        botaoExcluirTask.addEventListener('click',function(){
-            window.location.href = `excluirTask.php?idDaTask="${idDaTask}"`;
-
-
-
-        })
+          //add clique no botao de excluir
+          const botaoExcluirTask = document.getElementById('excluirTask');
+          botaoExcluirTask.addEventListener('click',function(){
+              window.location.href = `excluirTask.php?idDaTask="${idDaTask}"`;
 
 
 
-        // Pega o menu e o posiciona no local do clique
-        const menuTask = document.getElementById("menuTask");
+          })
 
-        // Definir a posição do menu
-        menuTask.style.top = event.y;
-        menuTask.style.left = event.x;
 
-        
-        menuTask.classList.toggle("hidden");
+
+          // Pega o menu e o posiciona no local do clique
+          const menuTask = document.getElementById("menuTask");
+
+          // Definir a posição do menu
+          menuTask.style.top = event.y;
+          menuTask.style.left = event.x;
+
+          
+          menuTask.classList.toggle("hidden");
+        });
     });
+
+
+    //TOPICO===========================================================
+
+    const topicosListados = Array.from(document.getElementsByClassName("topico"));
+
+    console.log(topicosListados); 
+
+    topicosListados.forEach((topico) => {
+
+      topico.addEventListener("contextmenu", function (event) {
+          event.preventDefault();
+
+
+          const idDoTopico = topico.getAttribute('data-topico-id');
+
+
+          console.log(idDoTopico);
+
+          //add clique no botao de excluir
+          const botaoExcluirTask = document.getElementById('excluirTask');
+          botaoExcluirTask.addEventListener('click',function(){
+              window.location.href = `excluirTopico.php?idDoTopico="${idDoTopico}"`;
+
+
+
+          })
+
+
+
+          // Pega o menu e o posiciona no local do clique
+          const menuTask = document.getElementById("menuTask");
+
+          // Definir a posição do menu
+          menuTask.style.top = event.y;
+          menuTask.style.left = event.x;
+
+          
+          menuTask.classList.toggle("hidden");
+      });
     });
-
-
 
     //remover quando clicar em outro lugar
     document.addEventListener('click', function(event) {
@@ -95,7 +134,6 @@ botaoAddTop.addEventListener("click", () => {
             </button>
         </form>`;
 
-  removerForm("formTopico", "inputTopico");
 });
 
 botaoAddTask.addEventListener("click", () => {
@@ -124,7 +162,6 @@ botaoCheckBox.addEventListener("click", () => {
         </form>
     `;
 
-  removerForm("formTasks", "inputTask");
 });
 
 botaoText.addEventListener("click", () => {

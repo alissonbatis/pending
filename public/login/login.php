@@ -18,7 +18,7 @@
           <h2 class="prompt-extrabold">Login</h2>
         </section>
         <section>
-          <img src="/pendingPHP/public/img/LogoPretaSemFundo.png" alt="logo">
+          <img src="/pending/public/img/LogoPretaSemFundo.png" alt="logo">
         </section>
         
       </div>

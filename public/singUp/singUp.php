@@ -18,7 +18,7 @@
     }else{
       $result = mysqli_query($conexao, "INSERT INTO usuarios(nome, email, telefone, senha) VALUES('$nome', '$email', '$telefone', '$senha')");
 
-      header('Location: /pendingPHP/public/login/login.php');
+      header('Location: /pending/public/login/login.php');
     }
 
     
@@ -52,7 +52,7 @@
           <h2 class="prompt-extrabold">Sing Up</h2>
         </section>
         <section>
-          <img src="/pendingPHP/public/img/LogoPretaSemFundo.png" alt="logo">
+          <img src="/pending/public/img/LogoPretaSemFundo.png" alt="logo">
         </section>
       </div>
 

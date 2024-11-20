@@ -1,6 +1,17 @@
 <?php 
+var_dump($_POST);
 session_start();
 include 'config.php';  // Inclua o arquivo de configuração com a conexão ao banco
+
+
+
+
+if ($conexao) {
+    echo "<script>console.log('Conexão estabelecida com sucesso!')</script>";
+} else {
+    echo "<script>console.log('Erro na conexão:')</script> " . mysqli_connect_error();
+}
+
 
 if((!isset($_SESSION['email']) == true ) and (!isset($_SESSION['senha']) == true)){
     unset($_SESSION['email']);
@@ -18,8 +29,6 @@ $usuarioId = $usuario['usuario_id'];
 // Verifica se o nome do tópico foi enviado
 if (isset($_POST['topicoNome']) && !empty($_POST['topicoNome'])) {
     $topicoNome = mysqli_real_escape_string($conexao, $_POST['topicoNome']);
-    
-
     // Insere o novo tópico no banco de dados
     $query = "INSERT INTO topicos (usuario_id, topicoNome) VALUES ('$usuarioId', '$topicoNome')";
     

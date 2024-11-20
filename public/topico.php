@@ -81,7 +81,7 @@
                 // Exibir os tópicos
                 if(count($topicos) > 0) {
                     foreach($topicos as $topico) {
-                        echo "<li style = list-style:''><a href='topico.php?topicoId={$topico['id']}&topico={$topico['topicoNome']}&topicoUser={$topico['usuario_id']}'>{$topico['topicoNome']}</a></li>";
+                        echo "<li style = list-style:''><a href='topico.php?topicoId={$topico['id']}&topico={$topico['topicoNome']}&topicoUser={$topico['usuario_id']}' class = 'topico' data-topico-id = '{$topico['id']}'>{$topico['topicoNome']}</a></li>";
                     }
                 } else {
                     echo "<p>Nenhum tópico encontrado.</p>";
